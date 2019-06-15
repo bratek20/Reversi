@@ -53,5 +53,11 @@ public static class EnumsUtils
     {
         return (ColorState)UnityEngine.Random.Range(0, 2);
     }
+
+    public static string ToAIString(this ColorState color)
+    {
+        return color == ColorState.BLACK ? "B" : "W";
+    }
+
 }
 

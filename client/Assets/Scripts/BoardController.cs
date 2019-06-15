@@ -54,4 +54,22 @@ public class BoardController
     {
         return model.CalcPieces(color);
     }
+
+    public string GetBoardSnapshot()
+    {
+        string snapshot = "";
+        Utils.ForEachCoord((i, j) =>
+        {
+            FieldState state = model.GetFieldState(i, j);
+            if(!state.IsColor())
+            {
+                snapshot += ".";
+            }
+            else
+            {
+                snapshot += state.ToColor().ToAIString();
+            }
+        });
+        return snapshot;
+    }
 }
