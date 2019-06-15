@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     private BoardModel model = null;
     private List<Player> players = new List<Player>();
 
+    private void Start()
+    {
+        StartGame(false, false);
+    }
+
     public void StartGame(bool player1AI, bool player2AI)
     {
         model = new BoardModel();

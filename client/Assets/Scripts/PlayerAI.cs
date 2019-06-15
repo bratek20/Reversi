@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class PlayerAI : Player
 {
+    [SerializeField]
+    private int recurenceDeep = 7;
+
     protected override void OnModelUpdate()
     {
         base.OnModelUpdate();
         if(IsMyTurn())
         {
-            Communicator.MoveData move = Communicator.CalcOptimalMove(Controller.GetBoardSnapshot(), Color, 5);
-            Debug.Log(move.I + " " + move.J);
-            bool moveResult = Controller.TryMakeMove(Color, move.I, move.J);
-            if(!moveResult)
+            Communicator.MoveData move = Communicator.CalcOptimalMove(Controller.GetBoardSnapshot(), Color, recurenceDeep);
+            if(move.IsPass())
             {
-                Debug.LogError("AI move failed");
+                return;
             }
+
+            StartCoroutine(ApplyMove(move.I, move.J));
         }
     }
-}
+
+    private IEnumerator ApplyMove(int i, int j)
+    {
+        yield return new WaitForSeconds(0.5f);
+        bool moveResult = Controller.TryMakeMove(Color, i, j);
+        if (!moveResult)
+        {
+            Debug.LogError("AI move failed");
+        }
+    }
+ }
+

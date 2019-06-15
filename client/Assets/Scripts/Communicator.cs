@@ -8,6 +8,11 @@ public class Communicator : MonoBehaviour
     {
         public int I;
         public int J;
+
+        public bool IsPass()
+        {
+            return I == -1 && J == -1;
+        }
     }
 
     public static MoveData CalcOptimalMove(string boardSnapshot, ColorState myColor, int recurenceDeep)
