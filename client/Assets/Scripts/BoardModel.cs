@@ -10,6 +10,7 @@ public class BoardModel
     private FieldState[,] fields = new FieldState[8, 8];
 
     public ColorState CurrentColor { get; private set; } = ColorState.BLACK;
+    public bool GameOver { get; private set; } = false;
 
     internal void ResetBoard()
     {
@@ -23,7 +24,9 @@ public class BoardModel
         fields[4, 4] = FieldState.BLACK;
 
         CurrentColor = ColorState.BLACK;
-        CalcSelectableFields();
+        GameOver = false;
+
+        RevalidateSelectableFields();
         SignalUpdate();
     }
 
@@ -43,8 +46,12 @@ public class BoardModel
             }
         }
         CurrentColor = CurrentColor.Other();
-        CalcSelectableFields();
-
+        int selectableFields = RevalidateSelectableFields();
+        if(selectableFields == 0)
+        {
+            CurrentColor = CurrentColor.Other();
+            GameOver = RevalidateSelectableFields() == 0;
+        }
         SignalUpdate();
     }
 
@@ -79,13 +86,19 @@ public class BoardModel
         return 0 <= i && i < 8;
     }
 
-    private void CalcSelectableFields()
+    private int RevalidateSelectableFields()
     {
+        int selectableFields = 0;
         Utils.ForEachCoord((i, j) =>
         {
             fields[i, j].ResetSelect();
-            fields[i, j] = IsFieldSelectable(i, j) ? FieldState.SELECTABLE : fields[i, j];
+            if(IsFieldSelectable(i, j))
+            {
+                fields[i, j] = FieldState.SELECTABLE;
+                selectableFields++;
+            }
         });
+        return selectableFields;
     }
 
     private bool IsFieldSelectable(int i, int j)

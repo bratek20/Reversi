@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
         model = new BoardModel();
         board.Setup(model);
         controller.Setup(model);
-
-        model.ResetBoard();
+        controller.OnModelUpdate(OnModelUpdate);
 
         ClearPlayers();
         ColorState player1Color = EnumsUtils.RandomColor();
@@ -30,6 +29,16 @@ public class GameManager : MonoBehaviour
         AddPlayer(player2AI, player1Color.Other());
 
         gameUI.Setup(players[0], players[1]);
+
+        controller.ResetBoard();
+    }
+
+    private void OnModelUpdate()
+    {
+        if(controller.IsGameOver())
+        {
+            gameUI.ShowResult(controller.GetWinner());
+        }
     }
 
     private void ClearPlayers()

@@ -24,6 +24,18 @@ public class BoardController
         model.ResetBoard();
     }
 
+    public bool IsGameOver()
+    {
+        return model.GameOver;
+    }
+
+    public ColorState GetWinner()
+    {
+        int blackPieces = CalcPieces(ColorState.BLACK);
+        int whitePieces = CalcPieces(ColorState.WHITE);
+        return blackPieces > whitePieces ? ColorState.BLACK : ColorState.WHITE; 
+    }
+
     public bool TryMakeMove(ColorState color, int i, int j)
     {
         if (CurrentColor != color)

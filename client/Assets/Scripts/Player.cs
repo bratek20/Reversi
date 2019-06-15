@@ -12,10 +12,10 @@ public class Player : MonoBehaviour
     {
         Color = color;
         Controller = controller;
-        controller.OnModelUpdate(() => update?.Invoke());
+        controller.OnModelUpdate(OnModelUpdate);
     }
 
-    public bool MyTurn()
+    public bool IsMyTurn()
     {
         return Controller.CurrentColor == Color;
     }
@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
     public int CalcMyPieces()
     {
         return Controller.CalcPieces(Color);
+    }
+
+    protected virtual void OnModelUpdate()
+    {
+        update?.Invoke();
     }
 
 }

@@ -14,7 +14,7 @@ public class PlayerInput : Player
     // Update is called once per frame
     void Update()
     {
-        if (MyTurn() && Input.GetMouseButtonUp(LEFT_BUTTON))
+        if (IsMyTurn() && Input.GetMouseButtonUp(LEFT_BUTTON))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

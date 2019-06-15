@@ -22,12 +22,11 @@ public class PlayerInfoPanel : MonoBehaviour
         p.update += OnPlayerUpdate;
         aiText.text = ((p as PlayerAI) != null).ToString();
         playerColor.color = player.Color.ToUnityColor();
-        OnPlayerUpdate();
     }
 
     private void OnPlayerUpdate()
     {
-        highlight.SetActive(player.MyTurn());
+        highlight.SetActive(player.IsMyTurn());
         piecesNumberText.text = player.CalcMyPieces().ToString();
     }
 }
