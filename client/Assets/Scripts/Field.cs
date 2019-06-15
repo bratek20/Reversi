@@ -6,9 +6,9 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     [SerializeField]
-    private Piece piece;
+    private Piece piece = null;
     [SerializeField]
-    private Selection selection;
+    private Selection selection = null;
 
     public float PieceHeight
     {

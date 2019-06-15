@@ -1,4 +1,4 @@
-﻿public enum Color
+﻿public enum ColorState
 {
     BLACK,
     WHITE
@@ -19,9 +19,9 @@ public static class EnumsUtils
         return state == FieldState.BLACK || state == FieldState.WHITE;
     }
 
-    public static Color ToColor(this FieldState state)
+    public static ColorState ToColor(this FieldState state)
     {
-        return (Color)state;
+        return (ColorState)state;
     }
 
     public static void ResetSelect(ref this FieldState state)
@@ -30,6 +30,21 @@ public static class EnumsUtils
         {
             state = FieldState.EMPTY;
         }
+    }
+
+    public static FieldState ToFieldState(this ColorState color)
+    {
+        return (FieldState)color;
+    }
+
+    public static ColorState Other(this ColorState color)
+    {
+        return (ColorState)(((int)color + 1) % 2);
+    }
+
+    public static ColorState RandomColor() 
+    {
+        return (ColorState)UnityEngine.Random.Range(0, 2);
     }
 }
 

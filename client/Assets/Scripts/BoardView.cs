@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BoardView : MonoBehaviour
 {
     [SerializeField]
-    private Transform leftTop;
+    private Transform leftTop = null;
     [SerializeField]
-    private Transform leftBottom;
+    private Transform leftBottom = null;
     [SerializeField]
-    private Transform rightTop;
+    private Transform rightTop = null;
     [SerializeField]
-    private Field fieldPrefab;
+    private Field fieldPrefab = null;
 
     private BoardModel model;
     private Field[,] fields = new Field[8, 8];
