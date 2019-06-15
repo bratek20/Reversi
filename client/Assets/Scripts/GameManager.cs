@@ -9,17 +9,14 @@ public class GameManager : MonoBehaviour
     private PlayerAI playerAIPrefab = null;
     [SerializeField]
     private PlayerInput playerInputPrefab = null;
+    [SerializeField]
+    private GameUI gameUI = null;
 
     private BoardController controller = new BoardController();
     private BoardModel model = null;
     private List<Player> players = new List<Player>();
 
-    private void Start()
-    {
-        ResetGame(false, false);
-    }
-
-    private void ResetGame(bool player1AI, bool player2AI)
+    public void StartGame(bool player1AI, bool player2AI)
     {
         model = new BoardModel();
         board.Setup(model);
@@ -31,6 +28,8 @@ public class GameManager : MonoBehaviour
         ColorState player1Color = EnumsUtils.RandomColor();
         AddPlayer(player1AI, player1Color);
         AddPlayer(player2AI, player1Color.Other());
+
+        gameUI.Setup(players[0], players[1]);
     }
 
     private void ClearPlayers()
@@ -53,6 +52,4 @@ public class GameManager : MonoBehaviour
     {
         return isAI ? (Player)playerAIPrefab : playerInputPrefab;
     }
-
-
 }

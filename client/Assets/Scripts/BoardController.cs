@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ public class BoardController
     public void Setup(BoardModel model)
     {
         this.model = model;
+    }
+
+    public void OnModelUpdate(Action a)
+    {
+        model.update += a;
     }
 
     public void ResetBoard()
@@ -30,5 +36,10 @@ public class BoardController
         }
         model.MakeMove(i, j);
         return true;
+    }
+
+    public int CalcPieces(ColorState color)
+    {
+        return model.CalcPieces(color);
     }
 }

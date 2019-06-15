@@ -48,6 +48,20 @@ public class BoardModel
         SignalUpdate();
     }
 
+    internal int CalcPieces(ColorState color)
+    {
+        FieldState pieceColor = color.ToFieldState();
+        int pieces = 0;
+        foreach(var f in fields)
+        {
+            if(f == pieceColor)
+            {
+                pieces++;
+            }
+        }
+        return pieces;
+    }
+
     private void ChangeColor(ColorState color, int i, int j, int di, int dj)
     {
         i += di;

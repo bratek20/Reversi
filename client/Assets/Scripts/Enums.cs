@@ -1,4 +1,6 @@
-﻿public enum ColorState
+﻿using UnityEngine;
+
+public enum ColorState
 {
     BLACK,
     WHITE
@@ -40,6 +42,11 @@ public static class EnumsUtils
     public static ColorState Other(this ColorState color)
     {
         return (ColorState)(((int)color + 1) % 2);
+    }
+
+    public static Color ToUnityColor(this ColorState color)
+    {
+        return color == ColorState.BLACK ? Color.black : Color.white;
     }
 
     public static ColorState RandomColor() 
