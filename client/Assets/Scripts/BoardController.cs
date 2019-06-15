@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardController : MonoBehaviour
+public class BoardController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private BoardModel model;
 
-    // Update is called once per frame
-    void Update()
+    public void Setup(BoardModel model)
     {
-        
-    }
+        this.model = model;
+    } 
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Selection : MonoBehaviour
 {
     [SerializeField]
-    private Color normalColor;
+    private UnityEngine.Color normalColor;
     [SerializeField]
-    private Color highlightColor;
+    private UnityEngine.Color highlightColor;
 
     private Material material;
 

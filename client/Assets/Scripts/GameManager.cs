@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BoardView board;
 
+    private BoardController controller = new BoardController();
     private BoardModel model;
 
     private void Start()
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     {
         model = new BoardModel();
         board.Setup(model);
-        model.Init();
+        controller.Setup(model);
+
+        model.ResetBoard();
     }
 }
