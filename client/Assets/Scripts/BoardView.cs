@@ -34,10 +34,10 @@ public class BoardView : MonoBehaviour
     public void Setup(BoardModel model)
     {
         this.model = model;
-        model.update += OnModelUpdate;
+        model.update += OnModelUpdated;
     }
 
-    private void OnModelUpdate()
+    private void OnModelUpdated()
     {
         Utils.ForEachCoord((i, j) =>
         {

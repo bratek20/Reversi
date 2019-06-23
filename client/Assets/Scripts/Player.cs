@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     {
         Color = color;
         Controller = controller;
-        controller.OnModelUpdate(OnModelUpdate);
+        controller.OnModelUpdate(OnBoardModelUpdated);
     }
 
     public bool IsMyTurn()
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         return Controller.CalcPieces(Color);
     }
 
-    protected virtual void OnModelUpdate()
+    protected virtual void OnBoardModelUpdated()
     {
         update?.Invoke();
     }

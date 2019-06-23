@@ -7,9 +7,9 @@ public class PlayerAI : Player
     [SerializeField]
     private int recurenceDeep = 7;
 
-    protected override void OnModelUpdate()
+    protected override void OnBoardModelUpdated()
     {
-        base.OnModelUpdate();
+        base.OnBoardModelUpdated();
         if(IsMyTurn())
         {
             Communicator.MoveData move = Communicator.CalcOptimalMove(Controller.GetBoardSnapshot(), Color, recurenceDeep);
