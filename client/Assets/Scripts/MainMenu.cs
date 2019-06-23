@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button playButton = null;
     [SerializeField]
+    private Button exitButton = null;
+    [SerializeField]
     private Toggle p1AIToggle = null;
     [SerializeField]
     private Toggle p2AIToggle = null;
@@ -17,6 +19,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         playButton.onClick.AddListener(OnPlayClicked);
+        exitButton.onClick.AddListener(OnExitClicked);
     }
 
     public void Show()
@@ -33,5 +36,10 @@ public class MainMenu : MonoBehaviour
     {
         game.StartGame(p1AIToggle.isOn, p2AIToggle.isOn);
         Hide();
+    }
+
+    private void OnExitClicked()
+    {
+        Application.Quit();
     }
 }
